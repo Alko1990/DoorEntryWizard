@@ -1,0 +1,115 @@
+/* Base styles */
+@import "tailwindcss";
+body {
+  margin: 0;
+  font-family: "Arial", sans-serif;
+  background-color: #f8f9fa; /* Light gray background for consistency */
+  color: #333; /* Standard text color */
+}
+
+h1 {
+  text-align: center; /* Center-align headings */
+  color: #4a628a; /* Primary blue color for titles */
+  margin: 20px 0; /* Add spacing around headings */
+}
+
+/* App Container */
+.app-container {
+  display: flex; /* Flexbox layout for sections */
+  justify-content: space-between; /* Equal space between left and right */
+  padding: 20px; /* Add space around container */
+  gap: 20px; /* Gap between sections */
+}
+
+/* Module Grid */
+/*.module-grid {
+/*  display: grid; /* Grid layout for modules */
+/*  grid-template-columns: repeat(
+/*   auto-fill,
+/*    minmax(110px, 1fr)
+/*  ); /* Dynamic columns */
+/*  grid-auto-rows: 110px; /* Fixed row height */
+/*  gap: 10px; /* Spacing between items */
+/*  padding: 10px; /* Space around the grid */
+/*  max-width: 600px; /* Constrain grid width */
+/*  margin: 0 auto; /* Center the grid */
+/*  justify-items: center; /* Center items horizontally */
+/*  align-items: center; /* Center items vertically */
+/*}
+
+/*.module-image {
+  /*width: 110px; /* Fixed image width */
+/*height: 110px; /* Fixed image height */
+/*border-radius: 5%; /* Add rounded corners */
+/* object-fit: cover; /* Maintain aspect ratio */
+/* transition: transform 0.2s ease; /* Smooth hover transition */
+/*}
+
+/*.module-image:hover {
+/*  transform: translateY(-2px); /* Slight lift effect */
+/*  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Subtle shadow */
+/*}
+
+/* Left Section: Module Grid */
+.left-section {
+  flex: 2; /* Allow larger area for grid */
+  max-width: 50vw; /* Limit width to half screen */
+  height: 100vh; /* Full viewport height */
+  overflow-y: auto; /* Scrollable content */
+  padding: 10px; /* Space inside container */
+  background-color: #ffffff; /* White background */
+  border: 1px solid #ddd; /* Subtle border */
+  border-radius: 8px; /* Rounded edges */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+  text-align: center; /* Center-align text */
+}
+
+/* Right Section: Entry Panels */
+.right-section {
+  flex: 2; /* Equal space for entry panels */
+  padding: 10px; /* Space inside container */
+  background-color: #ffffff; /* White background */
+  border: 1px solid #ddd; /* Subtle border */
+  border-radius: 8px; /* Rounded edges */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+  text-align: center; /* Center-align text */
+}
+
+/* Buttons */
+button {
+  padding: 10px 20px; /* Add padding for consistent size */
+  background-color: #4a628a; /* Primary button color */
+  color: white; /* White text for contrast */
+  border: none; /* Remove default border */
+  border-radius: 4px; /* Add rounded corners */
+  cursor: pointer; /* Pointer cursor on hover */
+}
+
+button:hover {
+  background-color: #7ab2d3; /* Lighter blue hover color */
+}
+
+/* Panel Counter */
+.panel-counter {
+  font-size: 16px; /* Standard size for counter text */
+  color: #4a628a; /* Match primary color scheme */
+  margin-bottom: 20px; /* Space below counter */
+  text-align: center; /* Center-align counter */
+}
+
+/* Checkbox Container */
+.checkbox-container {
+  display: flex; /* Flexbox layout */
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center-align items */
+  margin-top: 20px; /* Add space above */
+}
+
+.checkbox-container input[type="checkbox"] {
+  margin-bottom: 5px; /* Space below checkbox */
+}
+
+.checkbox-container label {
+  font-size: 16px; /* Standard label font size */
+  color: #4a628a; /* Primary color for labels */
+}

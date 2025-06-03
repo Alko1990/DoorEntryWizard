@@ -1,0 +1,64 @@
+/* src/components/EntryPanel/EntryPanel.css - Compact Version */
+
+.entry-panel {
+  background-color: #f8f9fa;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 12px; /* Overall padding for the panel card */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content; /* Panel width adjusts to its content */
+  min-width: 100px; /* Enough for one 80px module + padding. Adjust as needed. */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  /* margin-bottom is handled by the parent flex container's gap in EntryPanel.jsx */
+}
+
+/* Styles for the grid holding modules INSIDE a panel */
+.panel-grid {
+  /* Key layout properties (grid-template-columns, gap, width, margin) 
+     are set by the inline 'gridStyle' from calculateGridStyle in EntryPanel.jsx.
+     This CSS block can define fallbacks or other visual properties. */
+  /* padding: 2px; /* Minimal padding inside the drop target area itself */
+  border-radius: 4px;
+}
+
+/* Styles for an individual module cell INSIDE a panel */
+.panel-cell {
+  width: 80px; /* COMPACT SIZE */
+  height: 80px; /* COMPACT SIZE */
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.panel-cell img {
+  max-width: 70px; /* Fits well within an 80px cell with some border/padding */
+  max-height: 70px;
+  object-fit: contain; /* Ensures the whole image is visible */
+}
+
+/* Styles for an empty module cell (placeholder) INSIDE a panel */
+.panel-cell.empty {
+  /* width & height are inherited from .panel-cell (80x80px) */
+  background-color: #e9ecef;
+  border: 2px dashed #adb5bd;
+  color: #6c757d;
+  font-style: italic;
+  font-size: 0.75rem; /* Smaller placeholder text */
+  /* Flex properties for centering text are applied on the div in JSX directly */
+}
+
+/* Styles for controls within a panel (like the remove module button) */
+.panel-controls {
+  display: flex;
+  padding-top: 8px;
+  gap: 8px;
+  justify-content: center;
+  width: 100%;
+}

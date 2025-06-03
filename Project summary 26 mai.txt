@@ -1,0 +1,70 @@
+Okay, I've reviewed the project summary for the Entry Panel Configuration Tool dated May 26, 2025.
+
+It describes a web application designed to guide users through configuring entry panel systems. Here's a concise overview:
+
+📝 Project Overview: Entry Panel Configuration Tool
+The application facilitates a multi-step configuration process for entry panel systems, starting from system and panel type selection, through detailed panel module configuration and receiver selection, to a final summary page.
+
+核心应用流程 (Core Application Flow)
+Home Page (Home.jsx):
+
+Users select System Technology (X1, IP, 4G) via cards.
+Users select Panel Type (Video, Audio).
+These choices initialize the main configuration state.
+Panel Configuration Page (PanelSelector.jsx):
+
+Displays Available Modules (filtered by selections) for drag-and-drop.
+Global Installation Type (Recessed/Wall-mounted) selection.
+Manages 1-3 Entry Panels (EntryPanel.jsx), allowing individual or synchronized ("Lik konfigurasjon") configuration.
+Panel count and add/remove functionality.
+Receivers Page (Receivers.jsx):
+
+Shows compatible Receivers in a card grid with quantity controls.
+Compatibility logic based on System Technology and Panel Type.
+Summary Page (SummaryPage.jsx):
+
+Comprehensive overview: selected technology, panel type, installation, number of panels, etc.
+Detailed breakdown of each panel's configuration.
+"Total Produktliste" (Total Product List) table, copyable to Excel (TSV).
+Buttons for "Last ned JSON" (Download JSON) and "Start på nytt" (Start Over).
+🧠 Core Logic & State (EntryManager.jsx)
+Centralized state management for all configuration aspects including:
+systemTechnology, panelType, panels (array of objects with id, modules, budget, label), sameConfig flag.
+selectedAccessories, selectedReceivers, calculatedPowerSupplies, global installationBoxType.
+Key functions handle:
+Initialization, panel addition/removal/labeling/module updates (with validation for module limits, budget, exclusivity).
+"Same configuration" toggling, receiver quantity updates, installation type setting.
+JSON generation for the summary.
+Automatic Calculations (useEffect):
+Accessories (Frames & Boxes): Based on module counts per panel and global installation type (specific rules for 1-8 modules). Includes XDV/304 video splitter for X1 Video systems under certain conditions.
+Power Supplies: Calculated based on system technology and panel count (specific items for X1, 4G; placeholder for IP).
+🧩 Key UI Components
+ModuleGrid.jsx: Draggable module images.
+EntryPanel.jsx: Renders individual panels, handles module drag-and-drop, label editing.
+SystemTechnologyCard.jsx: For system selection on the Home page.
+ReceiverCard.jsx: For displaying receivers with quantity controls.
+📊 Data & Styling
+Metadata: All product info from Cleaned_metadata_new.json.
+Images: Mapped via IMAGE_MAP in src/data/imageMap.js, including WebP formats.
+Styling: Primarily Tailwind CSS for utility-first styling, with progressive refactoring of inline styles. Global styles in index.css and some component-specific CSS.
+✅ Key Functionalities & Status
+Complete guided configuration flow.
+Drag-and-drop module management with validation.
+"Same configuration" mode.
+Panel renaming.
+Automatic calculation of accessories and power supplies.
+Receiver selection with image display and quantity adjustment.
+Comprehensive summary with product list and JSON download.
+UI refactoring with Tailwind CSS is ongoing.
+🚀 Deferred / Future Considerations
+Per-Panel Installation Type: Allow individual recessed/wall-mounted settings for panels.
+Enhanced Copy-to-Excel (TSV) feature.
+English Translation (i18n).
+Further UI polish, tooltips, and receiver descriptions.
+Ensuring robust WebP image handling.
+Logic refinement (e.g., power supply removal conditions, adding audio main modules to video setups).
+Improved UI flow.
+Adding links to a webshop.
+Lead Generation: Email/password requirement, logging, and terms.
+General code cleanup.
+This summary encapsulates the main aspects of your Entry Panel Configuration Tool project as of May 26, 2025. It appears to be a well-structured project with a clear roadmap for current and future development.

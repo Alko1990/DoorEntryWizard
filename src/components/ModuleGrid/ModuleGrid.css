@@ -1,0 +1,30 @@
+/* ModuleGrid.css */
+
+/* Module grid container */
+.module-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(80px, 1fr)
+  ); /* Adjust minmax if image size changes significantly */
+  gap: 4px; /* Adjust gap as needed */
+  padding: 2px;
+  /* justify-items: center; // Already there */
+  /* align-items: center; // Already there */
+  /* max-width: 500px; // Already there */
+  /* margin: 0 auto; // Already there */
+}
+
+/* Module images */
+.module-image {
+  width: 80px; /* REDUCED from 110px */
+  height: 80px; /* REDUCED from 110px */
+  border-radius: 5%;
+  object-fit: cover;
+  transition: transform 0.2s ease;
+}
+
+.module-image:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
