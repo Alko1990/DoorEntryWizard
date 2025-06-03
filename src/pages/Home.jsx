@@ -185,11 +185,18 @@ export default function Home() {
         <InstructionModal
           isOpen={showHomeInstructions}
           onClose={() => setShowHomeInstructions(false)}
-          title="Velkommen og Instruksjoner"
+          title="Instruksjoner"
         >
           <p>Velkommen til Teletecs porttelefonkalkulator!</p>
           <h4 className="font-semibold mt-3">Slik kommer du i gang:</h4>
           <ol className="list-decimal list-inside ml-4 space-y-1 mt-1">
+            <li>
+              <strong>Mobilbrukere:</strong>
+              Kalkulatoren fungerer best på større skjermer. På mobil anbefales
+              det å bruke konfigurasjonen dersom du skal sette opp ett panel
+              eller flere paneler med lik oppbygning. Trykk på ønskede moduler
+              for å legge dem til.
+            </li>
             <li>
               <strong>Velg Systemteknologi:</strong> Klikk på et av kortene (X1,
               IP, eller 4G) for å velge hovedsystemet. Les beskrivelsen på hvert

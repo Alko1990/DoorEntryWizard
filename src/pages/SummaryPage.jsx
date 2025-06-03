@@ -141,8 +141,6 @@ export default function SummaryPage() {
     const systemInfoForEmail = `SYSTEMVALG:
 System Teknologi: ${summaryData.systemTechnology || "Ikke valgt"}
 Paneltype: ${summaryData.panelType || "Ikke valgt"}
-Global Installasjonstype: ${summaryData.installationBoxTypeGlobal === "recessed" ? "Innfelt" : summaryData.installationBoxTypeGlobal === "wall-mounted" ? "Utenpå" : summaryData.installationBoxTypeGlobal || "N/A"}
-Global Vandalsikker: ${typeof summaryData.isGlobalVandalProof !== "undefined" ? (summaryData.isGlobalVandalProof ? "Ja" : "Nei") : "N/A"}
 Antall Paneler: ${summaryData.numberOfPanels || 0}
 Lik konfigurasjon på alle paneler: ${summaryData.isSameConfiguration ? "Ja" : "Nei"}
 `;
