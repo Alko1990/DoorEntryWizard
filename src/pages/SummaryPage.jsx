@@ -141,6 +141,8 @@ export default function SummaryPage() {
     const systemInfoForEmail = `SYSTEMVALG:
 System Teknologi: ${summaryData.systemTechnology || "Ikke valgt"}
 Paneltype: ${summaryData.panelType || "Ikke valgt"}
+Global Installasjonstype: ${summaryData.installationBoxTypeGlobal === "recessed" ? "Innfelt" : summaryData.installationBoxTypeGlobal === "wall-mounted" ? "Utenpå" : summaryData.installationBoxTypeGlobal || "N/A"}
+Global Vandalsikker: ${typeof summaryData.isGlobalVandalProof !== "undefined" ? (summaryData.isGlobalVandalProof ? "Ja" : "Nei") : "N/A"}
 Antall Paneler: ${summaryData.numberOfPanels || 0}
 Lik konfigurasjon på alle paneler: ${summaryData.isSameConfiguration ? "Ja" : "Nei"}
 `;
@@ -263,22 +265,6 @@ Ved å sende denne e-posten, samtykker du til at Teletec AS kan kontakte deg ang
             <li>
               <strong>Paneltype:</strong>{" "}
               {summaryData.panelType || "Ikke valgt"}
-            </li>
-            <li>
-              <strong>Global Installasjonstype:</strong>{" "}
-              {summaryData.installationBoxTypeGlobal === "recessed"
-                ? "Innfelt"
-                : summaryData.installationBoxTypeGlobal === "wall-mounted"
-                  ? "Utenpå"
-                  : summaryData.installationBoxTypeGlobal || "N/A"}
-            </li>
-            <li>
-              <strong>Global Vandalsikker:</strong>{" "}
-              {typeof summaryData.isGlobalVandalProof !== "undefined"
-                ? summaryData.isGlobalVandalProof
-                  ? "Ja"
-                  : "Nei"
-                : "N/A"}
             </li>
             <li>
               <strong>Antall Paneler:</strong> {summaryData.numberOfPanels}
