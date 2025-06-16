@@ -1,11 +1,12 @@
 // src/components/EntryPanel/EntryPanel.jsx
 import React, { useContext } from "react";
 import { useDrop } from "react-dnd";
-import "./EntryPanel.css";
+import "./EntryPanel.css"; // Ensure this is imported
 import { IMAGE_MAP } from "../../data/imageMap.js";
 import { EntryManagerContext } from "../../utils/EntryManager.jsx";
+import PanelFrame from "../PanelFrame/PanelFrame.jsx";
 
-// Internal component for the drop target area
+// PanelDropTarget internal component
 function PanelDropTarget({ panelId, updatePanelModules, children, gridStyle }) {
   const [{ isOver, canDrop }, dropRef] = useDrop({
     accept: "MODULE",
@@ -20,7 +21,7 @@ function PanelDropTarget({ panelId, updatePanelModules, children, gridStyle }) {
     }),
   });
 
-  let currentDropTargetClasses = "border-gray-300 bg-gray-50";
+  let currentDropTargetClasses = "border-gray-300 bg-gray-50"; // Normal state
   if (isOver && canDrop) {
     currentDropTargetClasses =
       "border-blue-400 bg-blue-50 ring-2 ring-blue-300";
@@ -32,14 +33,16 @@ function PanelDropTarget({ panelId, updatePanelModules, children, gridStyle }) {
     <div
       ref={dropRef}
       className={`panel-grid border rounded-md transition-colors duration-150 ease-in-out ${currentDropTargetClasses}`}
-      style={gridStyle}
+      style={{
+        ...gridStyle, // From calculateGridStyle (controls columns, gap, width, margin)
+        minHeight: "80px", // Enough for one 80px module + 2px padding/gap from .panel-grid CSS
+      }}
     >
       {children}
     </div>
   );
 }
 
-// Main component for a single entry panel
 export default function EntryPanel({ panels, updatePanelModules }) {
   const {
     updatePanelLabel,
@@ -47,34 +50,6 @@ export default function EntryPanel({ panels, updatePanelModules }) {
     updatePanelVandalProof,
     sameConfig,
   } = useContext(EntryManagerContext);
-
-  const calculateGridStyle = (moduleCount) => {
-    const moduleCellSize = 80;
-    const gapSize = 4;
-    let columnCount;
-    let gridTemplateColumnsString;
-    if (moduleCount === 0) {
-      gridTemplateColumnsString = `repeat(1, minmax(${moduleCellSize}px, auto))`;
-      columnCount = 1;
-    } else if (moduleCount >= 1 && moduleCount <= 4) {
-      gridTemplateColumnsString = `repeat(1, ${moduleCellSize}px)`;
-      columnCount = 1;
-    } else {
-      gridTemplateColumnsString = `repeat(2, ${moduleCellSize}px)`;
-      columnCount = 2;
-    }
-    const gridWidth =
-      moduleCellSize * columnCount + gapSize * Math.max(0, columnCount - 1);
-    return {
-      display: "grid",
-      gridTemplateColumns: gridTemplateColumnsString,
-      gap: `${gapSize}px`,
-      justifyContent: "center",
-      alignItems: "center",
-      width: `${gridWidth}px`,
-      margin: "0 auto",
-    };
-  };
 
   const renderPanelModules = (modulesInPanel, panelId) => {
     if (!modulesInPanel || modulesInPanel.length === 0) {
@@ -99,10 +74,15 @@ export default function EntryPanel({ panels, updatePanelModules }) {
               ? `${module["Product Number"]}-${module.Name}-${index}`
               : `module-${panelId}-${index}`
           }
+          // Inline styles for width and height REMOVED. Size comes from .panel-cell in CSS.
           className="panel-cell"
         >
           {moduleImageSrc ? (
-            <img src={moduleImageSrc} alt={module.Name || "Modul"} />
+            <img
+              src={moduleImageSrc}
+              alt={module.Name || "Modul"}
+              // Img styling (max-width/height) is in EntryPanel.css
+            />
           ) : (
             <span className="text-xs text-gray-700 p-1 break-words text-center">
               {module.Name || "Ukjent Modul"}
@@ -111,6 +91,39 @@ export default function EntryPanel({ panels, updatePanelModules }) {
         </div>
       );
     });
+  };
+
+  const calculateGridStyle = (moduleCount) => {
+    const moduleCellSize = 80;
+    const gapSize = 4;
+
+    let columnCount;
+    let gridTemplateColumnsString;
+
+    if (moduleCount === 0) {
+      gridTemplateColumnsString = `repeat(1, minmax(${moduleCellSize}px, auto))`;
+      columnCount = 1;
+    } else if (moduleCount >= 1 && moduleCount <= 4) {
+      gridTemplateColumnsString = `repeat(1, ${moduleCellSize}px)`;
+      columnCount = 1;
+    } else {
+      // 5+ modules
+      gridTemplateColumnsString = `repeat(2, ${moduleCellSize}px)`;
+      columnCount = 2;
+    }
+
+    const gridWidth =
+      moduleCellSize * columnCount + gapSize * Math.max(0, columnCount - 1);
+
+    return {
+      display: "grid",
+      gridTemplateColumns: gridTemplateColumnsString,
+      gap: `${gapSize}px`,
+      justifyContent: "center",
+      alignItems: "center",
+      width: `${gridWidth}px`,
+      margin: "0 auto",
+    };
   };
 
   const handleLabelChange = (panelId, newLabel) => {
@@ -128,6 +141,8 @@ export default function EntryPanel({ panels, updatePanelModules }) {
 
   return (
     <div className="entry-panels-overall-container flex flex-row flex-wrap justify-center gap-2 py-2">
+      {" "}
+      {/* Using gap-2 as per last discussion for spacing between panels */}
       {panels.map((panel) => (
         <div key={panel.id} className="entry-panel">
           <input
@@ -138,8 +153,9 @@ export default function EntryPanel({ panels, updatePanelModules }) {
             className="w-full px-3 py-1.5 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 text-sm text-center font-medium mb-2"
           />
 
-          {!sameConfig && (
+          {!sameConfig && panels.length > 0 && (
             <div className="w-full grid grid-cols-2 gap-x-2 border-t border-gray-200 pt-2 mb-2">
+              {/* Installation Type Radios */}
               <div className="space-y-1">
                 <p className="text-xs font-medium text-gray-600 text-center">
                   Installasjon:
@@ -173,6 +189,7 @@ export default function EntryPanel({ panels, updatePanelModules }) {
                   </label>
                 </div>
               </div>
+              {/* VR Checkbox */}
               <div className="flex flex-col items-center justify-center">
                 <p className="text-xs font-medium text-gray-600 text-center mb-1">
                   Sikkerhet:

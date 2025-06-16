@@ -17,8 +17,8 @@ function ModuleGrid({ modules = [], onModuleClick }) {
     const [{ isDragging }, drag] = useDrag(() => ({
       type: "MODULE",
       item: {
-        id: moduleProductNumber, // This is the Product Number
-        name: moduleName, // This is the Name
+        id: module.productNumber || module["Product Number"], // This is the Product Number
+        name: module.altText || module.Name, // This is the Name
       },
       collect: (monitor) => ({
         isDragging: !!monitor.isDragging(),
@@ -29,8 +29,8 @@ function ModuleGrid({ modules = [], onModuleClick }) {
     const handleClick = () => {
       if (onModuleClick) {
         onModuleClick({
-          id: moduleProductNumber, // Pass Product Number as 'id'
-          name: moduleName, // Pass Name as 'name'
+          id: module.productNumber || module["Product Number"],
+          name: module.altText || module.Name,
         });
       }
     };

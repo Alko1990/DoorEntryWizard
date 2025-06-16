@@ -219,7 +219,7 @@
         "Cost": 8,
         "Max per Panel": 1,
         "Category": "Panel module",
-        "Alt Text": "Skjermmodul",
+        "Alt Text": "Front plate for Skjermmodul",
         "Contributes to Product Count": true
       },
       {
@@ -232,7 +232,7 @@
         "Cost": 2,
         "Max per Panel": 1,
         "Category": "Panel module",
-        "Alt Text": "Tastaturmodul",
+        "Alt Text": "Front plate for Tastaturmodul",
         "Contributes to Product Count": true
       },
       {
@@ -244,7 +244,7 @@
         "Image": "Info",
         "Cost": 1,
         "Category": "Panel module",
-        "Alt Text": "Informasjonsmodul",
+        "Alt Text": "Front plate for Informasjonsmodul",
         "Contributes to Product Count": true
       },
       {
@@ -257,7 +257,7 @@
         "Cost": 2,
         "Max per Panel": 1,
         "Category": "Panel module",
-        "Alt Text": "RFID-modul",
+        "Alt Text": "Front plate for RFID-modul",
         "Contributes to Product Count": true
       },
       {
@@ -273,50 +273,50 @@
       },
       {
         "Product Number": 117802,
-        "Name": "TwoButtons",
+        "Name": "Knappemodul",
         "Front Plate": 117814,
         "VrfrontPlate": 117847,
         "Vrimage": "2VR",
         "Image": "2",
         "Cost": 1,
         "Category": "Panel module",
-        "Alt Text": "Ringemodul med to knapper",
+        "Alt Text": "Front plate med to knapper",
         "Contributes to Product Count": true
       },
       {
         "Product Number": 117802,
-        "Name": "ThreeButtons",
+        "Name": "Knappemodul",
         "Front Plate": 117815,
         "VrfrontPlate": 117848,
         "Vrimage": "3VR",
         "Image": "3",
         "Cost": 1,
         "Category": "Panel module",
-        "Alt Text": "Ringemodul med tre knapper",
+        "Alt Text": "Front plate med tre knapper",
         "Contributes to Product Count": true
       },
       {
         "Product Number": 117802,
-        "Name": "FourButtons",
+        "Name": "Knappemodul",
         "Front Plate": 117816,
         "VrfrontPlate": 117849,
         "Vrimage": "4VR",
         "Image": "4",
         "Cost": 1,
         "Category": "Panel module",
-        "Alt Text": "Ringemodul med fire knapper",
+        "Alt Text": "Front plate med fire knapper",
         "Contributes to Product Count": true
       },
       {
         "Product Number": 117802,
-        "Name": "EightButtons",
+        "Name": "Knappemodul",
         "Front Plate": 117817,
         "VrfrontPlate": 117850,
         "Vrimage": "8VR",
         "Image": "8",
         "Cost": 1,
         "Category": "Panel module",
-        "Alt Text": "Ringemodul med åtte knapper",
+        "Alt Text": "Front plate med åtte knapper",
         "Contributes to Product Count": true
       }
     ],
@@ -683,7 +683,7 @@
           "Name": "4G lydmodul (2 knapper)",
           "Front Plate": 118360,
           "VrfrontPlate": 117846,
-          "Vrimage": "Audio_1VR",
+          "Vrimage": "Audio_2VR",
           "Image": "Audio_2",
           "Budget Contribution": 12,
           "Is Required in Panel": 1,

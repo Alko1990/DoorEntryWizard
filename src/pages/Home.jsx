@@ -93,8 +93,8 @@ export default function Home() {
             Velkommen til Teletecs porttelefon kalkulator
           </h1>
           <p className="mt-2 text-center text-sm text-gray-600">
-            La oss bygge et porttelefon system! Dette er en WIP, siden er ikke
-            ferdig og kan vise feil.
+            La oss bygge et porttelefon system! <br />
+            Dette er en WIP, siden er ikke ferdig og kan vise feil.
           </p>
         </div>
         <section className="space-y-6">

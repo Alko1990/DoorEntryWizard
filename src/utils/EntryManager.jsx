@@ -53,30 +53,29 @@ const EntryManager = ({ children }) => {
   const findModuleByDetails = useCallback(
     (moduleDetails) => {
       if (!moduleDetails || !moduleDetails.id || !moduleDetails.name) {
-        handleError("Invalid module details for lookup (findModuleByDetails).");
+        handleError("Invalid module details for lookup.");
         return null;
       }
-      const { id, name } = moduleDetails;
+      const { id, name } = moduleDetails; // 'id' is the Product Number, 'name' is the Alt Text from the UI
+
       const mainModulesList = getSystemMainModules();
       const agnosticModulesList = getSystemAgnosticPanelModules();
-      const safeMainModules = Array.isArray(mainModulesList)
-        ? mainModulesList
-        : [];
-      const safeAgnosticModules = Array.isArray(agnosticModulesList)
-        ? agnosticModulesList
-        : [];
       const allPossiblePanelModules = [
-        ...safeMainModules,
-        ...safeAgnosticModules,
+        ...(Array.isArray(mainModulesList) ? mainModulesList : []),
+        ...(Array.isArray(agnosticModulesList) ? agnosticModulesList : []),
       ];
+
+      // This is the consistent lookup: It always uses the Product Number and the Alt Text.
       const foundModule = allPossiblePanelModules.find(
-        (m) => m && m["Product Number"] === id && m.Name === name
+        (m) => m && m["Product Number"] === id && m["Alt Text"] === name
       );
+
       if (!foundModule) {
         console.warn(
-          `Module with PN ${id} and Name "${name}" not found by findModuleByDetails.`
+          `Module lookup failed for Product Number '${id}' and Alt Text '${name}'`
         );
       }
+
       return foundModule || null;
     },
     [getSystemMainModules, getSystemAgnosticPanelModules, handleError]
@@ -740,7 +739,9 @@ const EntryManager = ({ children }) => {
             quantity: 1,
           });
           if (frontPlatePN) {
-            const frontPlateName = `${module.Name} Frontplate${frontPlateNameSuffix} (for ${panel.label || `Panel ${panel.id}`})`;
+            const frontPlateDescription =
+              module["Alt Text"] || `${module.Name} Frontplate`;
+            const frontPlateName = `${frontPlateDescription}${frontPlateNameSuffix} (for ${panel.label || `Panel ${panel.id}`})`;
             products.push({
               productNumber: frontPlatePN,
               name: frontPlateName,
